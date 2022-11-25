@@ -2,6 +2,8 @@
 
 namespace Api\Models;
 
+require_once __DIR__ . "/Gamepad.php";
+
 class WirelessGamepad extends Gamepad {
   private float $capacity;
   private float $frequency;

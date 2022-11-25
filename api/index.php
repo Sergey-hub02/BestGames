@@ -1,13 +1,13 @@
 <?php
 
-require_once __DIR__ . "/dao/WiredGamepadDAO.php";
+require_once __DIR__ . "/dao/WirelessGamepadDAO.php";
 require_once __DIR__ . "/../config/Database.php";
-require_once __DIR__ . "/models/WiredGamepad.php";
+require_once __DIR__ . "/models/WirelessGamepad.php";
 
 use Config\Database;
-use Api\Dao\WiredGamepadDAO;
-use Api\Models\WiredGamepad;
+use Api\Dao\WirelessGamepadDAO;
+use Api\Models\WirelessGamepad;
 
-$dao = new WiredGamepadDAO((new Database())->getConnection());
-$result = $dao->delete(6);
+$dao = new WirelessGamepadDAO((new Database())->getConnection());
+$result = $dao->delete(7);
 print_r($result);
