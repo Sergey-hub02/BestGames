@@ -1,16 +1,15 @@
 <?php
 
-require_once __DIR__ . "/dao/ClientDAO.php";
+require_once __DIR__ . "/dao/ConsoleDAO.php";
 require_once __DIR__ . "/../config/Database.php";
-require_once __DIR__ . "/models/Client.php";
-require_once __DIR__ . "/models/Address.php";
+require_once __DIR__ . "/models/Console.php";
 
 use Config\Database;
-use Api\Dao\ClientDAO;
-use Api\Models\Client;
-use Api\Models\Address;
+use Api\Dao\ConsoleDAO;
+use Api\Models\Console;
 
-$dao = new ClientDAO((new Database())->getConnection());
-$result = $dao->delete(8);
+$dao = new ConsoleDAO((new Database())->getConnection());
+
+$result = $dao->delete(6);
 
 print_r($result);
