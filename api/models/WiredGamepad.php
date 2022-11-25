@@ -1,0 +1,59 @@
+<?php
+
+namespace Api\Models;
+
+class WiredGamepad extends Gamepad {
+  private float $cabelLength;
+  private float $consumption;
+
+  /**
+   * @param int $gamepadId          ID геймпада
+   * @param string $name            название геймпада
+   * @param string $brand           компания, выпустившая геймпад
+   * @param int $buttons            количество кнопок
+   * @param float $price            цена геймпада
+   * @param float $cabelLength      длина кабеля
+   * @param float $consumption      потребление энергии
+   */
+  public function __construct(
+    int $gamepadId = 0,
+    string $name = "",
+    string $brand = "",
+    int $buttons = 0,
+    float $price = 0.0,
+    float $cabelLength = 0.0,
+    float $consumption = 0.0
+  ) {
+    parent::__construct($gamepadId, $name, $brand, $buttons, $price);
+    $this->cabelLength = $cabelLength;
+    $this->consumption = $consumption;
+  }
+
+  /**
+   * @return float
+   */
+  public function getCabelLength(): float {
+    return $this->cabelLength;
+  }
+
+  /**
+   * @param float $cabelLength
+   */
+  public function setCabelLength(float $cabelLength): void {
+    $this->cabelLength = $cabelLength;
+  }
+
+  /**
+   * @return float
+   */
+  public function getConsumption(): float {
+    return $this->consumption;
+  }
+
+  /**
+   * @param float $consumption
+   */
+  public function setConsumption(float $consumption): void {
+    $this->consumption = $consumption;
+  }
+}
