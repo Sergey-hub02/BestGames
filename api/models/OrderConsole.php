@@ -2,9 +2,13 @@
 
 namespace Api\Models;
 
+require_once __DIR__ . "/Client.php";
+require_once __DIR__ . "/Console.php";
+
 class OrderConsole {
-  private Console $console;
-  private Client $client;
+  private int $orderId;
+  private ?Console $console;
+  private ?Client $client;
   private int $amount;
 
   /**
@@ -13,10 +17,12 @@ class OrderConsole {
    * @param int $amount                 количество товара
    */
   public function __construct(
-    Console $console = null,
-    Client $client = null,
+    int $orderId = 0,
+    ?Console $console = null,
+    ?Client $client = null,
     int $amount = 0
   ) {
+    $this->orderId = $orderId;
     $this->console = $console;
     $this->client = $client;
     $this->amount = $amount;
@@ -30,9 +36,9 @@ class OrderConsole {
   }
 
   /**
-   * @param Console|null $console
+   * @param Console $console
    */
-  public function setConsole(?Console $console): void {
+  public function setConsole(Console $console): void {
     $this->console = $console;
   }
 
@@ -44,9 +50,9 @@ class OrderConsole {
   }
 
   /**
-   * @param Client|null $client
+   * @param Client $client
    */
-  public function setClient(?Client $client): void {
+  public function setClient(Client $client): void {
     $this->client = $client;
   }
 
@@ -62,5 +68,19 @@ class OrderConsole {
    */
   public function setAmount(int $amount): void {
     $this->amount = $amount;
+  }
+
+  /**
+   * @return int
+   */
+  public function getOrderId(): int {
+    return $this->orderId;
+  }
+
+  /**
+   * @param int $orderId
+   */
+  public function setOrderId(int $orderId): void {
+    $this->orderId = $orderId;
   }
 }
