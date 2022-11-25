@@ -2,6 +2,8 @@
 
 namespace Api\Models;
 
+require_once __DIR__ . "/Gamepad.php";
+
 class WiredGamepad extends Gamepad {
   private float $cabelLength;
   private float $consumption;

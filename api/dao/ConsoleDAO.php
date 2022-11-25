@@ -116,6 +116,10 @@ class ConsoleDAO {
    * @return Console|null
    */
   public function readOne(int $consoleId): Console|null {
+    if (!$this->exists($consoleId)) {
+      return null;
+    }
+
     $query = "
       SELECT
         `Console`.`console_id` AS `id`,

@@ -151,6 +151,10 @@ class ClientDAO {
    * @return Client|null
    */
   public function readOne(int $clientId): Client|null {
+    if (!$this->exists($clientId)) {
+      return null;
+    }
+
     $query = "
       SELECT
         `Client`.`client_id` AS `id`,
