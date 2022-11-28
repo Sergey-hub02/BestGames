@@ -242,4 +242,55 @@ class ClientController extends Controller {
       ["Content-Type: application/json", "HTTP/1.1 201 Created"]
     );
   }
+
+  /**
+   * DELETE /api/clients/delete: удаляет клиента из БД
+   * @return void
+   */
+  public function deleteAction(): void {
+    $method = strtoupper($_SERVER["REQUEST_METHOD"]);
+
+    // для данной конечной точки можно применять только метод DELETE
+    if ($method !== "DELETE") {
+      $this->sendOutput(
+        json_encode([
+          "error" => "Метод $method не поддерживается!"
+        ], JSON_UNESCAPED_UNICODE),
+        ["Content-Type: application/json", "HTTP/1.1 422 Unprocessable Entity"]
+      );
+      return;
+    }
+
+    $params = $this->getQueryStringParams();
+
+    // id клиента обязательно должен быть задан
+    if (empty($params["id"])) {
+      $this->sendOutput(
+        json_encode([
+          "error" => "Невозможно удалить клиента! Не задан id клиента!"
+        ], JSON_UNESCAPED_UNICODE),
+        ["Content-Type: application/json", "HTTP/1.1 400 Bad Request"]
+      );
+      return;
+    }
+
+    // ошибка при удалении клиента
+    if (!$this->clientDAO->delete($params["id"])) {
+      $this->sendOutput(
+        json_encode([
+          "error" => "Произошла ошибка при удалении клиента!"
+        ], JSON_UNESCAPED_UNICODE),
+        ["Content-Type: application/json", "HTTP/1.1 500 Internal Server Error"]
+      );
+      return;
+    }
+
+    // успешной удаление
+    $this->sendOutput(
+      json_encode([
+        "message" => "Удаление клиента прошло успешно!"
+      ], JSON_UNESCAPED_UNICODE),
+      ["Content-Type: application/json", "HTTP/1.1 200 OK"]
+    );
+  }
 }
