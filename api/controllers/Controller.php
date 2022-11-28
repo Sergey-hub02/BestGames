@@ -26,7 +26,11 @@ class Controller {
    * Возвращает параметры запроса
    * @return mixed
    */
-  public function getQueryStringParams(): mixed {
+  public function getQueryStringParams(): array {
+    if (empty($_SERVER["QUERY_STRING"])) {
+      return [];
+    }
+
     parse_str($_SERVER["QUERY_STRING"], $query);
     return $query;
   }

@@ -103,4 +103,14 @@ class Client {
   public function setAddress(?Address $address): void {
     $this->address = $address;
   }
+
+  public function toArray(): array {
+    return [
+      "client_id" => $this->getClientId(),
+      "first_name" => $this->getFirstName(),
+      "last_name" => $this->getLastName(),
+      "email" => $this->getEmail(),
+      "address" => $this->getAddress()->toArray()
+    ];
+  }
 }

@@ -99,4 +99,18 @@ class Address {
   public function setFlat(int $flat): void {
     $this->flat = $flat;
   }
+
+  /**
+   * Возвращает поля объекта в виде ассоциативного массива
+   * @return array
+   */
+  public function toArray(): array {
+    return [
+      "region" => $this->getRegion(),
+      "city" => $this->getCity(),
+      "street" => $this->getStreet(),
+      "house" => $this->getHouse(),
+      "flat" => $this->getFlat()
+    ];
+  }
 }

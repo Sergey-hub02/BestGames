@@ -24,7 +24,7 @@ class Database {
     string $host = "localhost",
     string $dbName = "BestGames",
     string $user = "ezh1k",
-    string $password = "Sergey02"
+    string $password = "alastor_cool"
   ) {
     $this->host = $host;
     $this->dbName = $dbName;
