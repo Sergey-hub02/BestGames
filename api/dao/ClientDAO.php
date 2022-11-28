@@ -48,10 +48,11 @@ class ClientDAO {
       INSERT INTO `Client`(
         `first_name`,
         `last_name`,
-        `email`
+        `email`,
+        `password`
       )
       VALUES
-        (?, ?, ?)
+        (?, ?, ?, ?)
     ";
 
     $stmt = $this->connection->prepare($query);
@@ -59,7 +60,8 @@ class ClientDAO {
     if (!$stmt->execute([
       $client->getFirstName(),
       $client->getLastName(),
-      $client->getEmail()
+      $client->getEmail(),
+      $client->getPassword()
     ])) {
       $this->connection->rollBack();
       return null;
@@ -132,6 +134,7 @@ class ClientDAO {
         $row["first_name"],
         $row["last_name"],
         $row["email"],
+        "",
         new Address(
           $row["region"],
           $row["city"],
@@ -184,6 +187,7 @@ class ClientDAO {
       $result["first_name"],
       $result["last_name"],
       $result["email"],
+      "",
       new Address(
         $result["region"],
         $result["city"],
@@ -212,7 +216,8 @@ class ClientDAO {
       SET
         `first_name` = ?,
         `last_name` = ?,
-        `email` = ?
+        `email` = ?,
+        `password` = ?
       WHERE `client_id` = ?
     ";
 
@@ -222,6 +227,7 @@ class ClientDAO {
       $client->getFirstName(),
       $client->getLastName(),
       $client->getEmail(),
+      $client->getPassword(),
       $client->getClientId()
     ])) {
       $this->connection->rollBack();

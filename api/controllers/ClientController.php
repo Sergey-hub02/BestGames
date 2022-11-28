@@ -109,6 +109,7 @@ class ClientController extends Controller {
       empty($data["first_name"])
       || empty($data["last_name"])
       || empty($data["email"])
+      || empty($data["password"])
       || empty($data["region"])
       || empty($data["city"])
       || empty($data["street"])
@@ -130,6 +131,7 @@ class ClientController extends Controller {
     $client->setFirstName($data["first_name"]);
     $client->setLastName($data["last_name"]);
     $client->setEmail($data["email"]);
+    $client->setPassword(password_hash($data["password"], PASSWORD_DEFAULT));
 
     $client->setAddress(new Address(
       $data["region"],
@@ -152,9 +154,91 @@ class ClientController extends Controller {
       return;
     }
 
-    // добавления клиента прошло успешно
+    // добавление клиента прошло успешно
     $this->sendOutput(
       json_encode($created->toArray(), JSON_UNESCAPED_UNICODE),
+      ["Content-Type: application/json", "HTTP/1.1 201 Created"]
+    );
+  }
+
+  /**
+   * PUT /api/clients/update: обновляет данные клиента в БД
+   * @return void
+   */
+  public function updateAction(): void {
+    $method = strtoupper($_SERVER["REQUEST_METHOD"]);
+
+    // для данной конечной точки можно применить только метод PUT
+    if ($method !== "PUT") {
+      $this->sendOutput(
+        json_encode([
+          "error" => "Ошибка обновления данных клиента!"
+        ], JSON_UNESCAPED_UNICODE),
+        ["Content-Type: application/json", "HTTP/1.1 422 Unprocessable Entity"]
+      );
+      return;
+    }
+
+    // получаем тело запроса
+    $data = json_decode(
+      file_get_contents("php://input"),
+      true
+    );
+
+    // проверка на полноценность данных
+    if (
+      empty($data["client_id"])
+      || empty($data["first_name"])
+      || empty($data["last_name"])
+      || empty($data["email"])
+      || empty($data["password"])
+      || empty($data["region"])
+      || empty($data["city"])
+      || empty($data["street"])
+      || empty($data["house"])
+      || empty($data["flat"])
+    ) {
+      $this->sendOutput(
+        json_encode([
+          "error" => "Невозможно выполнить запрос! Неполные данные!"
+        ], JSON_UNESCAPED_UNICODE),
+        ["Content-Type: application/json", "HTTP/1.1 400 Bad Request"]
+      );
+      return;
+    }
+
+    // все данные для обновления присутствуют
+    $client = new Client(
+      $data["client_id"],
+      $data["first_name"],
+      $data["last_name"],
+      $data["email"],
+      password_hash($data["password"], PASSWORD_DEFAULT),
+      new Address(
+        $data["region"],
+        $data["city"],
+        $data["street"],
+        $data["house"],
+        $data["flat"]
+      )
+    );
+
+    $updated = $this->clientDAO->update($client);
+
+    // произошла ошибка при обновлении данных клиента
+    if ($updated === null) {
+      $this->sendOutput(
+        json_encode([
+          "error" => "Ошибка обновления данных клиента!"
+        ], JSON_UNESCAPED_UNICODE),
+        ["Content-Type: application/json", "HTTP/1.1 500 Internal Server Error"]
+      );
+      return;
+    }
+
+    // обновление данных клиента прошло успешно
+    $this->sendOutput(
+      json_encode($updated->toArray(), JSON_UNESCAPED_UNICODE),
       ["Content-Type: application/json", "HTTP/1.1 201 Created"]
     );
   }
