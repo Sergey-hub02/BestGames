@@ -58,4 +58,20 @@ class WiredGamepad extends Gamepad {
   public function setConsumption(float $consumption): void {
     $this->consumption = $consumption;
   }
+
+  /**
+   * Возвращает поля объекта в виде ассоциативного массива
+   * @return array
+   */
+  public function toArray(): array {
+    return [
+      "gamepad_id" => $this->getGamepadId(),
+      "name" => $this->getName(),
+      "brand" => $this->getBrand(),
+      "buttons" => $this->getButtons(),
+      "price" => $this->getPrice(),
+      "cabel_length" => $this->getCabelLength(),
+      "consumption" => $this->getConsumption()
+    ];
+  }
 }
