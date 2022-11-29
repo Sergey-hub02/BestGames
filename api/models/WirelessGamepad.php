@@ -58,4 +58,20 @@ class WirelessGamepad extends Gamepad {
   public function setFrequency(float $frequency): void {
     $this->frequency = $frequency;
   }
+
+  /**
+   * Возвращает поля объекта в виде ассоциативного массива
+   * @return array
+   */
+  public function toArray(): array {
+    return [
+      "gamepad_id" => $this->getGamepadId(),
+      "name" => $this->getName(),
+      "brand" => $this->getBrand(),
+      "buttons" => $this->getButtons(),
+      "price" => $this->getPrice(),
+      "capacity" => $this->getCapacity(),
+      "frequency" => $this->getFrequency()
+    ];
+  }
 }
