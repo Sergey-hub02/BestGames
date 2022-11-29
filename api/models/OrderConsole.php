@@ -83,4 +83,17 @@ class OrderConsole {
   public function setOrderId(int $orderId): void {
     $this->orderId = $orderId;
   }
+
+  /**
+   * Возвращает поля объекта в виде ассоциативного массива
+   * @return array
+   */
+  public function toArray(): array {
+    return [
+      "order_id" => $this->getOrderId(),
+      "console" => $this->getConsole()->toArray(),
+      "client" => $this->getClient()->toArray(),
+      "amount" => $this->getAmount()
+    ];
+  }
 }
