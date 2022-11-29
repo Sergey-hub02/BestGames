@@ -135,4 +135,20 @@ class Console {
   public function setPrice(float $price): void {
     $this->price = $price;
   }
+
+  /**
+   * Вовзращает поля объекта в виде ассоциативного массива
+   * @return array
+   */
+  public function toArray(): array {
+    return [
+      "console_id" => $this->getConsoleId(),
+      "name" => $this->getName(),
+      "brand" => $this->getBrand(),
+      "gpu" => $this->getGpu(),
+      "cpu" => $this->getCpu(),
+      "ram" => $this->getRam(),
+      "price" => $this->getPrice()
+    ];
+  }
 }
