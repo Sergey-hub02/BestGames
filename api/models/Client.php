@@ -132,7 +132,7 @@ class Client {
       "first_name" => $this->getFirstName(),
       "last_name" => $this->getLastName(),
       "email" => $this->getEmail(),
-      "address" => $this->getAddress()->toArray()
+      "address" => ($this->getAddress() === null) ? null : $this->getAddress()->toArray()
     ];
   }
 }

@@ -99,4 +99,18 @@ class Gamepad {
   public function setPrice(float $price): void {
     $this->price = $price;
   }
+
+  /**
+   * Возвращает поля объекта в виде ассоциативного массива
+   * @return array
+   */
+  public function toArray(): array {
+    return [
+      "gamepad_id" => $this->getGamepadId(),
+      "name" => $this->getName(),
+      "brand" => $this->getBrand(),
+      "buttons" => $this->getButtons(),
+      "price" => $this->getPrice()
+    ];
+  }
 }

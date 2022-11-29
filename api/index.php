@@ -4,11 +4,13 @@ require_once __DIR__ . "/controllers/ClientController.php";
 require_once __DIR__ . "/controllers/ConsoleController.php";
 require_once __DIR__ . "/controllers/WiredGamepadController.php";
 require_once __DIR__ . "/controllers/WirelessGamepadController.php";
+require_once __DIR__ . "/controllers/OrderGamepadController.php";
 
 use Api\Controllers\ClientController;
 use Api\Controllers\ConsoleController;
 use Api\Controllers\WiredGamepadController;
 use Api\Controllers\WirelessGamepadController;
+use Api\Controllers\OrderGamepadController;
 
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $uri = explode("/", $uri);
@@ -18,6 +20,7 @@ $sections = [
   "console",
   "wiredgamepad",
   "wirelessgamepad",
+  "ordergamepad",
 ];
 
 $section = $uri[3];
@@ -44,6 +47,10 @@ switch ($section) {
 
   case "wirelessgamepad":
     $controller = new WirelessGamepadController();
+    break;
+
+  case "ordergamepad":
+    $controller = new OrderGamepadController();
     break;
 
   default:
