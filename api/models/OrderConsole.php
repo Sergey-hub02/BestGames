@@ -6,25 +6,18 @@ require_once __DIR__ . "/Client.php";
 require_once __DIR__ . "/Console.php";
 
 class OrderConsole {
-  private int $orderId;
   private ?Console $console;
-  private ?Client $client;
   private int $amount;
 
   /**
    * @param Console|null $console       заказываемая консоль
-   * @param Client|null $client         заказчик
    * @param int $amount                 количество товара
    */
   public function __construct(
-    int $orderId = 0,
     ?Console $console = null,
-    ?Client $client = null,
     int $amount = 0
   ) {
-    $this->orderId = $orderId;
     $this->console = $console;
-    $this->client = $client;
     $this->amount = $amount;
   }
 
@@ -43,20 +36,6 @@ class OrderConsole {
   }
 
   /**
-   * @return Client|null
-   */
-  public function getClient(): ?Client {
-    return $this->client;
-  }
-
-  /**
-   * @param Client $client
-   */
-  public function setClient(Client $client): void {
-    $this->client = $client;
-  }
-
-  /**
    * @return int
    */
   public function getAmount(): int {
@@ -71,28 +50,12 @@ class OrderConsole {
   }
 
   /**
-   * @return int
-   */
-  public function getOrderId(): int {
-    return $this->orderId;
-  }
-
-  /**
-   * @param int $orderId
-   */
-  public function setOrderId(int $orderId): void {
-    $this->orderId = $orderId;
-  }
-
-  /**
    * Возвращает поля объекта в виде ассоциативного массива
    * @return array
    */
   public function toArray(): array {
     return [
-      "order_id" => $this->getOrderId(),
       "console" => $this->getConsole()->toArray(),
-      "client" => $this->getClient()->toArray(),
       "amount" => $this->getAmount()
     ];
   }
