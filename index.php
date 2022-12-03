@@ -36,7 +36,7 @@ $wirelessGamepads = json_decode(
 <body>
 
 <!--========== HEADER =========-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light shadow">
   <div class="container px-4 px-lg-5">
     <a class="navbar-brand d-inline-flex align-items-center" href="/">
       <img
@@ -51,7 +51,7 @@ $wirelessGamepads = json_decode(
       <button class="btn btn-outline-dark" type="submit">
         <i class="fa-solid fa-cart-shopping"></i>
         Корзина
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+        <span id="cart-counter" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
       </button>
     </form>
   </div>
@@ -75,7 +75,7 @@ $wirelessGamepads = json_decode(
     <div class="row row-cols-3">
 
       <?php foreach ($consoles as $console): ?>
-        <div class="col mb-5" data-object='<?= json_encode($console, JSON_UNESCAPED_UNICODE) ?>'>
+        <div class="col mb-5">
           <div class="card h-100">
             <!-- Изображение товара -->
             <a href="/pages/console.php?id=<?= $console['console_id'] ?>">
@@ -122,7 +122,13 @@ $wirelessGamepads = json_decode(
 
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto" href="#">Добавить корзину</a>
+                <button
+                  class="btn btn-outline-dark mt-auto cart-btn"
+                  type="button"
+                  data-object='<?= json_encode($console, JSON_UNESCAPED_UNICODE) ?>'
+                >
+                  Добавить корзину
+                </button>
               </div>
             </div>
           </div>
@@ -141,7 +147,7 @@ $wirelessGamepads = json_decode(
     <div class="row row-cols-3">
 
       <?php foreach ($wiredGamepads as $gamepad): ?>
-        <div class="col mb-5" data-object='<?= json_encode($gamepad, JSON_UNESCAPED_UNICODE) ?>'>
+        <div class="col mb-5">
           <div class="card h-100">
             <!-- Изображение товара -->
             <a href="/pages/wired.php?id=<?= $gamepad['gamepad_id'] ?>">
@@ -188,7 +194,13 @@ $wirelessGamepads = json_decode(
 
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto" href="#">Добавить корзину</a>
+                <button
+                  class="btn btn-outline-dark mt-auto cart-btn"
+                  type="button"
+                  data-object='<?= json_encode($gamepad, JSON_UNESCAPED_UNICODE) ?>'
+                >
+                  Добавить корзину
+                </button>
               </div>
             </div>
           </div>
@@ -207,7 +219,7 @@ $wirelessGamepads = json_decode(
     <div class="row row-cols-3">
 
       <?php foreach ($wirelessGamepads as $gamepad): ?>
-        <div class="col mb-5" data-object='<?= json_encode($gamepad, JSON_UNESCAPED_UNICODE) ?>'>
+        <div class="col mb-5">
           <div class="card h-100">
             <!-- Изображение товара -->
             <a href="/pages/wireless.php?id=<?= $gamepad['gamepad_id'] ?>">
@@ -254,7 +266,13 @@ $wirelessGamepads = json_decode(
 
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto" href="#">Добавить корзину</a>
+                <button
+                  class="btn btn-outline-dark mt-auto cart-btn"
+                  type="button"
+                  data-object='<?= json_encode($gamepad, JSON_UNESCAPED_UNICODE) ?>'
+                >
+                  Добавить корзину
+                </button>
               </div>
             </div>
           </div>
@@ -289,6 +307,7 @@ $wirelessGamepads = json_decode(
 </footer>
 
 <script src="/libs/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
+<script src="/assets/js/cart.js"></script>
 
 </body>
 
