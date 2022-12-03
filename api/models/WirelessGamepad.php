@@ -14,6 +14,7 @@ class WirelessGamepad extends Gamepad {
    * @param string $brand         компания, выпустившая геймпад
    * @param int $buttons          количество кнопок
    * @param float $price          цена геймпада
+   * @param string $image         путь к изображению
    * @param float $capacity       ёмкость аккумулятора
    * @param float $frequency      частота
    */
@@ -23,10 +24,11 @@ class WirelessGamepad extends Gamepad {
     string $brand = "",
     int $buttons = 0,
     float $price = 0.0,
+    string $image = "",
     float $capacity = 0.0,
     float $frequency = 0.0
   ) {
-    parent::__construct($gamepadId, $name, $brand, $buttons, $price);
+    parent::__construct($gamepadId, $name, $brand, $buttons, $price, $image);
     $this->capacity = $capacity;
     $this->frequency = $frequency;
   }
@@ -70,6 +72,7 @@ class WirelessGamepad extends Gamepad {
       "brand" => $this->getBrand(),
       "buttons" => $this->getButtons(),
       "price" => $this->getPrice(),
+      "image" => $this->getImage(),
       "capacity" => $this->getCapacity(),
       "frequency" => $this->getFrequency()
     ];

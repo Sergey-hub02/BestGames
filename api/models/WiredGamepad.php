@@ -14,6 +14,7 @@ class WiredGamepad extends Gamepad {
    * @param string $brand           компания, выпустившая геймпад
    * @param int $buttons            количество кнопок
    * @param float $price            цена геймпада
+   * @param string $image           путь к изображению
    * @param float $cabelLength      длина кабеля
    * @param float $consumption      потребление энергии
    */
@@ -23,10 +24,11 @@ class WiredGamepad extends Gamepad {
     string $brand = "",
     int $buttons = 0,
     float $price = 0.0,
+    string $image = "",
     float $cabelLength = 0.0,
     float $consumption = 0.0
   ) {
-    parent::__construct($gamepadId, $name, $brand, $buttons, $price);
+    parent::__construct($gamepadId, $name, $brand, $buttons, $price, $image);
     $this->cabelLength = $cabelLength;
     $this->consumption = $consumption;
   }
@@ -70,6 +72,7 @@ class WiredGamepad extends Gamepad {
       "brand" => $this->getBrand(),
       "buttons" => $this->getButtons(),
       "price" => $this->getPrice(),
+      "image" => $this->getImage(),
       "cabel_length" => $this->getCabelLength(),
       "consumption" => $this->getConsumption()
     ];

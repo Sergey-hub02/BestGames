@@ -10,6 +10,7 @@ class Console {
   private string $cpu;
   private int $ram;
   private float $price;
+  private string $image;
 
   /**
    * @param int $consoleId        ID консоли
@@ -19,6 +20,7 @@ class Console {
    * @param string $cpu           название процессора
    * @param int $ram              объём оперативной памяти
    * @param float $price          цена консоли
+   * @param string $image         путь к изображению
    */
   public function __construct(
     int $consoleId = 0,
@@ -27,7 +29,8 @@ class Console {
     string $gpu = "",
     string $cpu = "",
     int $ram = 0,
-    float $price = 0.0
+    float $price = 0.0,
+    string $image = ""
   ) {
     $this->consoleId = $consoleId;
     $this->name = $name;
@@ -36,6 +39,7 @@ class Console {
     $this->cpu = $cpu;
     $this->ram = $ram;
     $this->price = $price;
+    $this->image = $image;
   }
 
   /**
@@ -137,6 +141,20 @@ class Console {
   }
 
   /**
+   * @return string
+   */
+  public function getImage(): string {
+    return $this->image;
+  }
+
+  /**
+   * @param string $image
+   */
+  public function setImage(string $image): void {
+    $this->image = $image;
+  }
+
+  /**
    * Вовзращает поля объекта в виде ассоциативного массива
    * @return array
    */
@@ -148,7 +166,8 @@ class Console {
       "gpu" => $this->getGpu(),
       "cpu" => $this->getCpu(),
       "ram" => $this->getRam(),
-      "price" => $this->getPrice()
+      "price" => $this->getPrice(),
+      "image" => $this->getImage()
     ];
   }
 }

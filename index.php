@@ -51,13 +51,14 @@ $wirelessGamepads = json_decode(
       <button class="btn btn-outline-dark" type="submit">
         <i class="fa-solid fa-cart-shopping"></i>
         Корзина
+        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
       </button>
     </form>
   </div>
 </nav>
 
 <!--========== BANNER ==========-->
-<header class="bg-dark py-lg-5 banner">
+<header class="bg-dark py-5 banner">
   <div class="container px-4 px-lg-5 my-5">
     <div class="text-center text-white">
       <h1 class="display-4 fw-bolder banner-title">Best Games</h1>
@@ -74,15 +75,11 @@ $wirelessGamepads = json_decode(
     <div class="row row-cols-3">
 
       <?php foreach ($consoles as $console): ?>
-        <div class="col mb-5">
+        <div class="col mb-5" data-object='<?= json_encode($console, JSON_UNESCAPED_UNICODE) ?>'>
           <div class="card h-100">
             <!-- Изображение товара -->
             <a href="/pages/console.php?id=<?= $console['console_id'] ?>">
-              <img
-                class="card-img-top"
-                src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                alt="<?= $console['name'] ?>"
-              >
+              <div class="card-background" style="background-image: url(<?= $console['image'] ?>)"></div>
             </a>
 
             <!-- Детали товара -->
@@ -144,15 +141,11 @@ $wirelessGamepads = json_decode(
     <div class="row row-cols-3">
 
       <?php foreach ($wiredGamepads as $gamepad): ?>
-        <div class="col mb-5">
+        <div class="col mb-5" data-object='<?= json_encode($gamepad, JSON_UNESCAPED_UNICODE) ?>'>
           <div class="card h-100">
             <!-- Изображение товара -->
             <a href="/pages/wired.php?id=<?= $gamepad['gamepad_id'] ?>">
-              <img
-                class="card-img-top"
-                src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                alt="<?= $gamepad['name'] ?>"
-              >
+              <div class="card-background" style="background-image: url(<?= $gamepad['image'] ?>)"></div>
             </a>
 
             <!-- Детали товара -->
@@ -214,15 +207,11 @@ $wirelessGamepads = json_decode(
     <div class="row row-cols-3">
 
       <?php foreach ($wirelessGamepads as $gamepad): ?>
-        <div class="col mb-5">
+        <div class="col mb-5" data-object='<?= json_encode($gamepad, JSON_UNESCAPED_UNICODE) ?>'>
           <div class="card h-100">
             <!-- Изображение товара -->
             <a href="/pages/wireless.php?id=<?= $gamepad['gamepad_id'] ?>">
-              <img
-                class="card-img-top"
-                src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                alt="<?= $gamepad['name'] ?>"
-              >
+              <div class="card-background" style="background-image: url(<?= $gamepad['image'] ?>)"></div>
             </a>
 
             <!-- Детали товара -->
@@ -277,9 +266,25 @@ $wirelessGamepads = json_decode(
 </section>
 
 <!--========= FOOTER ==========-->
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-dark text-white text-center">
   <div class="container">
-    <p class="m-0 text-center text-white">&copy; Все права защищены BestGames</p>
+    <a class="navbar-brand d-inline-flex align-items-center" href="/">
+      <img
+        class="icon"
+        src="/assets/images/icons/BestGames_48x48.png"
+        alt="Logo"
+      >
+      <h3 class="ps-2 mb-0">BestGames</h3>
+    </a>
+
+    <address class="my-1">г. Москва, Проспект Вернадского, д. 78</address>
+
+    <p class="m-0">
+      Контактный телефон:&nbsp;
+      <a href="tel:+74992156565">+7 (499) 215-65-65</a>
+    </p>
+
+    <p class="m-0">&copy; Все права защищены BestGames</p>
   </div>
 </footer>
 

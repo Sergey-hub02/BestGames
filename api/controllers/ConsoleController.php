@@ -84,6 +84,7 @@ class ConsoleController extends Controller {
    * @return void
    */
   public function createAction(): void {
+    // TODO: добавить проверку на наличие файла для создания записи
     $method = strtoupper($_SERVER["REQUEST_METHOD"]);
 
     // для данной конечной точки применяется только метод POST

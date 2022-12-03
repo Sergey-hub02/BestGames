@@ -63,7 +63,7 @@ $gamepad = json_decode(
       <div class="col-md-6">
         <img
           class="card-img-top mb-5 mb-md-0"
-          src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg"
+          src="<?= $gamepad['image'] ?>"
           alt="<?= $gamepad['name'] ?>"
         >
       </div>
@@ -123,9 +123,25 @@ $gamepad = json_decode(
 </section>
 
 <!--========= FOOTER ==========-->
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-dark text-white text-center">
   <div class="container">
-    <p class="m-0 text-center text-white">&copy; Все права защищены BestGames</p>
+    <a class="navbar-brand d-inline-flex align-items-center" href="/">
+      <img
+        class="icon"
+        src="/assets/images/icons/BestGames_48x48.png"
+        alt="Logo"
+      >
+      <h3 class="ps-2 mb-0">BestGames</h3>
+    </a>
+
+    <address class="my-1">г. Москва, Проспект Вернадского, д. 78</address>
+
+    <p class="m-0">
+      Контактный телефон:&nbsp;
+      <a href="tel:+74992156565">+7 (499) 215-65-65</a>
+    </p>
+
+    <p class="m-0">&copy; Все права защищены BestGames</p>
   </div>
 </footer>
 

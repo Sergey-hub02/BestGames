@@ -8,6 +8,7 @@ class Gamepad {
   private string $brand;
   private int $buttons;
   private float $price;
+  private string $image;
 
   /**
    * @param int $gamepadId      ID геймпада
@@ -15,19 +16,22 @@ class Gamepad {
    * @param string $brand       компания, выпустившая геймпад
    * @param int $buttons        количество кнопок
    * @param float $price        цена геймпада
+   * @param string $image       путь к изображению
    */
   public function __construct(
     int $gamepadId = 0,
     string $name = "",
     string $brand = "",
     int $buttons = 0,
-    float $price = 0.0
+    float $price = 0.0,
+    string $image = ""
   ) {
     $this->gamepadId = $gamepadId;
     $this->name = $name;
     $this->brand = $brand;
     $this->buttons = $buttons;
     $this->price = $price;
+    $this->image = $image;
   }
 
   /**
@@ -101,6 +105,20 @@ class Gamepad {
   }
 
   /**
+   * @return string
+   */
+  public function getImage(): string {
+    return $this->image;
+  }
+
+  /**
+   * @param string $image
+   */
+  public function setImage(string $image): void {
+    $this->image = $image;
+  }
+
+  /**
    * Возвращает поля объекта в виде ассоциативного массива
    * @return array
    */
@@ -110,7 +128,8 @@ class Gamepad {
       "name" => $this->getName(),
       "brand" => $this->getBrand(),
       "buttons" => $this->getButtons(),
-      "price" => $this->getPrice()
+      "price" => $this->getPrice(),
+      "image" => $this->getImage()
     ];
   }
 }

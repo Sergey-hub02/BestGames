@@ -47,10 +47,11 @@ class ConsoleDAO {
         `gpu`,
         `cpu`,
         `ram`,
-        `price`
+        `price`,
+        `image`
       )
       VALUES
-        (?, ?, ?, ?, ?, ?)
+        (?, ?, ?, ?, ?, ?, ?)
     ";
 
     $stmt = $this->connection->prepare($query);
@@ -61,7 +62,8 @@ class ConsoleDAO {
       $console->getGpu(),
       $console->getCpu(),
       $console->getRam(),
-      $console->getPrice()
+      $console->getPrice(),
+      $console->getImage()
     ])) {
       return null;
     }
@@ -83,7 +85,8 @@ class ConsoleDAO {
       `Console`.`gpu`,
       `Console`.`cpu`,
       `Console`.`ram`,
-      `Console`.`price`
+      `Console`.`price`,
+      `Console`.`image`
     FROM `Console`";
 
     $stmt = $this->connection->query($query);
@@ -103,7 +106,8 @@ class ConsoleDAO {
         $row["gpu"],
         $row["cpu"],
         $row["ram"],
-        $row["price"]
+        $row["price"],
+        $row["image"]
       );
     }
 
@@ -128,7 +132,8 @@ class ConsoleDAO {
         `Console`.`gpu`,
         `Console`.`cpu`,
         `Console`.`ram`,
-        `Console`.`price`
+        `Console`.`price`,
+        `Console`.`image`
       FROM `Console`
       WHERE `Console`.`console_id` = ?";
 
@@ -146,7 +151,8 @@ class ConsoleDAO {
       $result["gpu"],
       $result["cpu"],
       $result["ram"],
-      $result["price"]
+      $result["price"],
+      $result["image"]
     );
   }
 
@@ -169,7 +175,8 @@ class ConsoleDAO {
         `gpu` = ?,
         `cpu` = ?,
         `ram` = ?,
-        `price` = ?
+        `price` = ?,
+        `image` = ?
       WHERE `console_id` = ?
     ";
 
@@ -182,6 +189,7 @@ class ConsoleDAO {
       $console->getCpu(),
       $console->getRam(),
       $console->getPrice(),
+      $console->getImage(),
       $console->getConsoleId()
     ])) {
       return null;

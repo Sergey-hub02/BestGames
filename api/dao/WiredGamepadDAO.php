@@ -45,10 +45,11 @@ class WiredGamepadDAO {
         `name`,
         `brand`,
         `buttons`,
-        `price`
+        `price`,
+        `image`
       )
       VALUES
-        (?, ?, ?, ?)
+        (?, ?, ?, ?, ?)
     ";
 
     $stmt = $this->connection->prepare($query);
@@ -57,7 +58,8 @@ class WiredGamepadDAO {
       $gamepad->getName(),
       $gamepad->getBrand(),
       $gamepad->getButtons(),
-      $gamepad->getPrice()
+      $gamepad->getPrice(),
+      $gamepad->getImage()
     ])) {
       $this->connection->rollBack();
       return null;
@@ -102,6 +104,7 @@ class WiredGamepadDAO {
       `Gamepad`.`brand`,
       `Gamepad`.`buttons`,
       `Gamepad`.`price`,
+      `Gamepad`.`image`,
       `WiredGamepad`.`cabel_length`,
       `WiredGamepad`.`consumption`
     FROM `Gamepad`
@@ -124,6 +127,7 @@ class WiredGamepadDAO {
         $row["brand"],
         $row["buttons"],
         $row["price"],
+        $row["image"],
         $row["cabel_length"],
         $row["consumption"]
       );
@@ -149,6 +153,7 @@ class WiredGamepadDAO {
       `Gamepad`.`brand`,
       `Gamepad`.`buttons`,
       `Gamepad`.`price`,
+      `Gamepad`.`image`,
       `WiredGamepad`.`cabel_length`,
       `WiredGamepad`.`consumption`
     FROM `Gamepad`
@@ -169,6 +174,7 @@ class WiredGamepadDAO {
       $result["brand"],
       $result["buttons"],
       $result["price"],
+      $result["image"],
       $result["cabel_length"],
       $result["consumption"]
     );
@@ -193,7 +199,8 @@ class WiredGamepadDAO {
         `name` = ?,
         `brand` = ?,
         `buttons` = ?,
-        `price` = ?
+        `price` = ?,
+        `image` = ?
       WHERE `gamepad_id` = ?
     ";
 
@@ -204,6 +211,7 @@ class WiredGamepadDAO {
       $gamepad->getBrand(),
       $gamepad->getButtons(),
       $gamepad->getPrice(),
+      $gamepad->getImage(),
       $gamepad->getGamepadId()
     ])) {
       $this->connection->rollBack();
