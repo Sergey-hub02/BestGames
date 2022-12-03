@@ -1,0 +1,11 @@
+.banner {
+  background-size: cover;
+  background-image: url("/assets/images/banner.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.banner-title,
+.banner-text {
+  text-shadow: -5px 2px 10px rgba(122, 122, 122, 1);
+}
