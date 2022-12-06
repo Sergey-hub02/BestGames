@@ -40,7 +40,7 @@
   </div>
 </nav>
 
-<!--========== СОДЕРЖИМОЕ КОРЗИНЫ ==========-->
+<!--========== КОРЗИНА ==========-->
 <section class="h-100 h-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -50,61 +50,8 @@
 
             <div class="row">
 
+              <!-- Содержимое корзины -->
               <div class="col-lg-7" id="cart-container">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                  <div>
-                    <h5 class="mb-1">Ваша корзина</h5>
-                    <p class="mb-0">Количество товаров в корзине: <span id="products-counter"></span></p>
-                  </div>
-                </div>
-
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                            class="img-fluid rounded-3"
-                            alt="Shopping item"
-                            style="width: 65px;"
-                          >
-                        </div>
-
-                        <div class="ms-3">
-                          <h5>Iphone 11 pro</h5>
-                        </div>
-                      </div>
-
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-<!--                          <h5 class="fw-normal mb-0">2</h5>-->
-                          <input
-                            type="number"
-                            class="form-control text-center"
-                            style="width: 4rem"
-                            value="2"
-                            min="1"
-                          >
-                        </div>
-
-                        <div class="mx-4">
-                          <h5 class="mb-0">$900</h5>
-                        </div>
-
-                        <form action="/">
-                          <button
-                            type="submit"
-                            class="btn btn-danger"
-                            name="delete"
-                          >
-                            <i class="fa-solid fa-trash"></i>
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div class="col-lg-5">
@@ -259,8 +206,8 @@
 </footer>
 
 <script src="/libs/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
-<script src="/assets/js/cart.js"></script>
 <script src="/assets/js/displayCart.js"></script>
+<script src="/assets/js/deleteCartItem.js"></script>
 
 </body>
 

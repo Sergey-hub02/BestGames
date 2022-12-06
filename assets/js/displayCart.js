@@ -31,11 +31,12 @@ const createCartItem = item => {
           <div class="d-flex flex-row align-items-center">
             <div>
               <input
-                type="number"
+                type="text"
                 class="form-control text-center"
                 style="width: 4rem"
                 value="${item['amount']}"
                 min="1"
+                readonly
               >
             </div>
 
@@ -43,15 +44,14 @@ const createCartItem = item => {
               <h5 class="mb-0">$${item['console']['price']}</h5>
             </div>
 
-            <form action="/">
-              <button
-                type="submit"
-                class="btn btn-danger"
-                name="delete"
-              >
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </form>
+            <button
+              type="button"
+              data-console-id="${item['console']['console_id']}"
+              class="btn btn-danger order-delete"
+              name="delete"
+            >
+              <i class="fa-solid fa-trash"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -81,11 +81,12 @@ const createCartItem = item => {
         <div class="d-flex flex-row align-items-center">
           <div>
             <input
-              type="number"
+              type="text"
               class="form-control text-center"
               style="width: 4rem"
               value="${item['amount']}"
               min="1"
+              readonly
             >
           </div>
 
@@ -93,15 +94,14 @@ const createCartItem = item => {
             <h5 class="mb-0">$${item['gamepad']['price']}</h5>
           </div>
 
-          <form action="/">
-            <button
-              type="submit"
-              class="btn btn-danger"
-              name="delete"
-            >
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </form>
+          <button
+            type="button"
+            data-gamepad-id="${item['gamepad']['gamepad_id']}"
+            class="btn btn-danger order-delete"
+            name="delete"
+          >
+            <i class="fa-solid fa-trash"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -123,8 +123,10 @@ const assembleItems = (prev, current) => {
 }
 
 /* ОТОБРАЖЕНИЕ КОЛИЧЕСТВА ТОВАРОВ В КОРЗИНЕ */
-const productsCount = document.querySelector("#products-counter");
-productsCount.textContent = (localStorage.hasOwnProperty("products"))
+const cartCounter = document.querySelector("#cart-counter");
+
+// отображаем количество товаров в корзине
+cartCounter.textContent = (localStorage.hasOwnProperty("products"))
   ? localStorage.getItem("products")
   : "0";
 
