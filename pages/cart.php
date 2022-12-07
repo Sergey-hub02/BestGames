@@ -61,7 +61,7 @@
                       <h5 class="mb-0">Детали заказа</h5>
                     </div>
 
-                    <form class="mt-4" action="/" method="post">
+                    <form class="mt-4" id="order-form" action="/scripts/createOrder.php" method="post">
                       <div class="form-outline form-white mb-4">
                         <input
                           type="text"
@@ -151,24 +151,25 @@
                           placeholder="Квартира"
                         >
                       </div>
+
+                      <hr class="my-4">
+
+                      <div class="d-flex justify-content-between">
+                        <p class="mb-2">К оплате</p>
+                        <p class="mb-2" id="order-cost">$4798.00</p>
+                      </div>
+
+                      <div class="text-center">
+                        <button
+                          type="submit"
+                          class="btn btn-outline-warning"
+                          id="pay"
+                          name="pay"
+                        >
+                          Оформить
+                        </button>
+                      </div>
                     </form>
-
-                    <hr class="my-4">
-
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">К оплате</p>
-                      <p class="mb-2">$4798.00</p>
-                    </div>
-
-                    <div class="text-center">
-                      <button
-                        type="submit"
-                        class="btn btn-outline-warning"
-                        name="pay"
-                      >
-                        Оплатить
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -208,6 +209,7 @@
 <script src="/libs/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
 <script src="/assets/js/displayCart.js"></script>
 <script src="/assets/js/deleteCartItem.js"></script>
+<script src="/assets/js/createOrder.js"></script>
 
 </body>
 

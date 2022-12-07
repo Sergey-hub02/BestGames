@@ -11,7 +11,6 @@ class Client {
   private string $firstName;
   private string $lastName;
   private string $email;
-  private string $password;
   private Address|null $address;
 
   /**
@@ -19,7 +18,6 @@ class Client {
    * @param string $firstName               имя клиента
    * @param string $lastName                фамилия клиента
    * @param string $email                   email клиента
-   * @param string $password                пароль клиента
    * @param Address|null $address           адрес клиента
    */
   public function __construct(
@@ -27,14 +25,12 @@ class Client {
     string $firstName = "",
     string $lastName = "",
     string $email = "",
-    string $password = "",
     Address|null $address = null
   ) {
     $this->clientId = $clientId;
     $this->firstName = $firstName;
     $this->lastName = $lastName;
     $this->email = $email;
-    $this->password = $password;
     $this->address = $address;
   }
 
@@ -78,20 +74,6 @@ class Client {
    */
   public function setLastName(string $lastName): void {
     $this->lastName = $lastName;
-  }
-
-  /**
-   * @return string
-   */
-  public function getPassword(): string {
-    return $this->password;
-  }
-
-  /**
-   * @param string $password
-   */
-  public function setPassword(string $password): void {
-    $this->password = $password;
   }
 
   /**

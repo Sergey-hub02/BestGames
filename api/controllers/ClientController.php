@@ -109,7 +109,6 @@ class ClientController extends Controller {
       empty($data["first_name"])
       || empty($data["last_name"])
       || empty($data["email"])
-      || empty($data["password"])
       || empty($data["region"])
       || empty($data["city"])
       || empty($data["street"])
@@ -131,14 +130,13 @@ class ClientController extends Controller {
     $client->setFirstName($data["first_name"]);
     $client->setLastName($data["last_name"]);
     $client->setEmail($data["email"]);
-    $client->setPassword(password_hash($data["password"], PASSWORD_DEFAULT));
 
     $client->setAddress(new Address(
       $data["region"],
       $data["city"],
       $data["street"],
       $data["house"],
-      $data["flat"]
+      intval($data["flat"])
     ));
 
     $created = $this->clientDAO->create($client);
@@ -191,7 +189,6 @@ class ClientController extends Controller {
       || empty($data["first_name"])
       || empty($data["last_name"])
       || empty($data["email"])
-      || empty($data["password"])
       || empty($data["region"])
       || empty($data["city"])
       || empty($data["street"])
@@ -213,7 +210,6 @@ class ClientController extends Controller {
       $data["first_name"],
       $data["last_name"],
       $data["email"],
-      password_hash($data["password"], PASSWORD_DEFAULT),
       new Address(
         $data["region"],
         $data["city"],

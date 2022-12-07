@@ -41,7 +41,7 @@ const createCartItem = item => {
             </div>
 
             <div class="mx-4">
-              <h5 class="mb-0">$${item['console']['price']}</h5>
+              <h5 class="mb-0">$${item['console']['price'] * item['amount']}</h5>
             </div>
 
             <button
@@ -91,7 +91,7 @@ const createCartItem = item => {
           </div>
 
           <div class="mx-4">
-            <h5 class="mb-0">$${item['gamepad']['price']}</h5>
+            <h5 class="mb-0">$${item['gamepad']['price'] * item['amount']}</h5>
           </div>
 
           <button
@@ -141,3 +141,16 @@ const consoles = ordersConsole.reduce(assembleItems, "");
 const gamepads = ordersGamepad.reduce(assembleItems, "");
 
 cart.innerHTML = `${consoles}\n${gamepads}`;
+
+// расчёт общей стоимости заказа
+const orderCostContainer = document.querySelector("#order-cost");
+
+let cost = ordersConsole.reduce((prev, current) => {
+  return prev + current["console"]["price"] * current["amount"];
+}, 0);
+
+cost += ordersGamepad.reduce((prev, current) => {
+  return prev + current["gamepad"]["price"] * current["amount"];
+}, 0);
+
+orderCostContainer.innerHTML = `$${cost}`;

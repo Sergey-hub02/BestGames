@@ -1,5 +1,9 @@
 <?php
 
+header("Access-Control-Allow-Origin: http://localhost:8080");
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+
 require_once __DIR__ . "/controllers/ClientController.php";
 require_once __DIR__ . "/controllers/ConsoleController.php";
 require_once __DIR__ . "/controllers/WiredGamepadController.php";

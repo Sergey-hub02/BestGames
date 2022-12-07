@@ -114,9 +114,9 @@ class OrderController extends Controller {
 
     // проверяем полноценность данных
     if (
-      empty($data["client_id"])
-      || empty($data["orders_console"])
-      || empty($data["orders_gamepad"])
+      empty($data["client"]["client_id"])
+      || empty($data["ordersconsole"])
+      || empty($data["ordersgamepad"])
       || empty($data["price"])
     ) {
       $this->sendOutput(
@@ -130,23 +130,23 @@ class OrderController extends Controller {
 
     // все данные для создания записи присутствуют
     $client = new Client();
-    $client->setClientId($data["client_id"]);
+    $client->setClientId($data["client"]["client_id"]);
 
     $ordersConsole = [];
-    foreach ($data["orders_console"] as $arOrderConsole) {
+    foreach ($data["ordersconsole"] as $arOrderConsole) {
       $console = new Console();
-      $console->setConsoleId($arOrderConsole["console"]["console_id"]);
+      $console->setConsoleId(intval($arOrderConsole["console"]["console_id"]));
 
-      $orderConsole = new OrderConsole($console, $arOrderConsole["amount"]);
+      $orderConsole = new OrderConsole($console, intval($arOrderConsole["amount"]));
       $ordersConsole[] = $orderConsole;
     }
 
     $ordersGamepad = [];
-    foreach ($data["orders_gamepad"] as $arOrderGamepad) {
+    foreach ($data["ordersgamepad"] as $arOrderGamepad) {
       $gamepad = new Gamepad();
-      $gamepad->setGamepadId($arOrderGamepad["gamepad"]["gamepad_id"]);
+      $gamepad->setGamepadId(intval($arOrderGamepad["gamepad"]["gamepad_id"]));
 
-      $orderGamepad = new OrderGamepad($gamepad, $arOrderGamepad["amount"]);
+      $orderGamepad = new OrderGamepad($gamepad, intval($arOrderGamepad["amount"]));
       $ordersGamepad[] = $orderGamepad;
     }
 
@@ -154,7 +154,7 @@ class OrderController extends Controller {
     $order->setClient($client);
     $order->setOrdersConsole($ordersConsole);
     $order->setOrdersGamepad($ordersGamepad);
-    $order->setPrice($data["price"]);
+    $order->setPrice(floatval($data["price"]));
 
     $created = $this->orderDAO->create($order);
 

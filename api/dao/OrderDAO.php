@@ -157,7 +157,6 @@ class OrderDAO {
         $row["first_name"],
         $row["last_name"],
         $row["email"],
-        "",
         new Address(
           $row["region"],
           $row["city"],
@@ -308,7 +307,6 @@ class OrderDAO {
       $result["first_name"],
       $result["last_name"],
       $result["email"],
-      "",
       new Address(
         $result["region"],
         $result["city"],

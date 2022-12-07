@@ -49,7 +49,8 @@ $gamepad = json_decode(
     <form class="d-flex">
       <button class="btn btn-outline-dark" type="submit">
         <i class="fa-solid fa-cart-shopping"></i>
-        Корзина
+        <a class="text-decoration-none" href="/pages/cart.php">Корзина</a>
+        <span id="cart-counter" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
       </button>
     </form>
   </div>
@@ -111,7 +112,11 @@ $gamepad = json_decode(
             min="1"
           >
 
-          <button class="btn btn-outline-dark flex-shrink-0" type="button">
+          <button
+            class="btn btn-outline-dark flex-shrink-0 cart-btn"
+            data-object='<?= json_encode($gamepad, JSON_UNESCAPED_UNICODE) ?>'
+            type="button"
+          >
             <i class="fa-solid fa-cart-shopping"></i>
             В корзину
           </button>
@@ -145,6 +150,7 @@ $gamepad = json_decode(
 </footer>
 
 <script src="/libs/bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
+<script src="/assets/js/addSeveralItems.js"></script>
 
 </body>
 
